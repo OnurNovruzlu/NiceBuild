@@ -1,18 +1,18 @@
 spring:
   datasource:
-    username: root
-    password: 1234
+    username: example
+    password: password
     url: jdbc:mysql://localhost:3306/testbase
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
   mail:
     host: smtp.gmail.com
     port: 587
-    username: onovruzlu01@gmail.com
-    password: dhlquuutwpwlhpkz
+    username: example@gmail.com
+    password: password-example
     properties:
       mail:
         smtp:
