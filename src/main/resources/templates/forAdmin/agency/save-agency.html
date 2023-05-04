@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Save Agency</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>Save Agency</h2>
+    <hr/>
+    <form th:action="@{/agency/save}" method="post" enctype="multipart/form-data">
+        <input type="text" th:name="name" placeholder="Enter name" class="form-control col-4 mb-4"/>
+        <input type="text" th:name="contact" placeholder="Enter contact" class="form-control col-4 mb-4"/>
+        <input type="text" th:name="desc" placeholder="Enter description" class="form-control col-4 mb-4"/>
+        <input type="file" th:name="file" class="form-control col-4 mb-4"/>
+        <label>Choose file:</label>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+    <hr/>
+    <a th:href="@{/agency}">Back to List</a>
+</div>
+</body>
+</html>

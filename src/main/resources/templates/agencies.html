@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Agentliklər</title>
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <style>
+    .list-inline{padding-left:0;list-style:none;margin-left:-5px}.list-inline>li{display:inline-block;padding-right:5px;padding-left:5px}dl{margin-top:0;margin-bottom:20px}dd,dt{line-height:1.42857143}dt{-weight:700}dd{margin-left:0}@media (min-width:768px){.dl-horizontal dt{float:left;width:160px;clear:left;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dl-horizontal dd{margin-left:180px}}
+  </style>
+<body>
+<nav class="navbar navbar-dark navbar-expand-md" id="app-navbar" style="position: sticky;">
+  <div class="container-fluid"><a class="navbar-brand" th:href="@{/}"><button class="btn btn-danger">NiceBuild</button></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navcol-1">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link active" th:href="@{/elans}">Elanlar</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/agencies}">Agentlik</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/contact}">Əlaqə</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Çıxış</a></li>
+      </ul> <a style="align-content: left;" class="nav-link" th:href="@{/addElan}"><button class="btn btn-success ms-auto" type="button">Elan Yerlesdir</button>   </a>
+    </div>
+  </div>
+</nav>
+<div class="container py-4 py-xl-5">
+  <div class="row mb-5">
+    <div class="col-md-8 col-xl-6 text-center mx-auto">
+      <h2><br><strong><span style="color: rgb(72, 59, 54);">BAKIDA DAŞINMAZ ƏMLAK AGENTLİKLƏRİ</span></strong><br><br></h2>
+    </div>
+  </div>
+  <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+    <div class="col" th:each="agency:${agencies}">
+      <div class="card">
+        <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;"
+             th:src="@{'data:image/png;base64,'+${agency.image}}">
+        <div class="card-body p-4">
+          <h4 class="card-title" th:text="${agency.agent_name}"/>
+          <p class="card-text" th:text="${agency.description}"/>
+          <div class="d-flex">
+            <div></div><i class="fas fa-phone-alt" style="font-size: 20px;"></i>
+            <p class="text-muted mb-0" style="backdrop-filter: invert(0%);color: var(--bs-card-cap-bg);" th:text="${agency.contact}"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-12">
+  <div style="background-color:rgba(58,47,47,0);background-image:url(&#39;assets/img/footer.png&#39;);background-size:cover;background-repeat:no-repeat;height:366px;">
+    <div class="container">
+      <h1 class="text-center" style="font-family:ABeeZee, sans-serif;font-size:46px;color:rgb(0,0,0);">Sizin əmlak xidmətinizdədir</h1>
+      <hr>
+      <ul class="list-inline" id="text_decoration" style="margin-top:30px;font-family:ABeeZee, sans-serif;">
+        <li><a class="decoration" style="color:rgb(0,0,0);font-size:20px;margin-right:10px;" th:href="@{/}">Ana səhifə</a></li>
+        <li><a style="font-size:20px;color:rgb(0,0,0);margin-right:10px;" th:href="@{/agencies}">Agentlik</a></li>
+        <li><a style="font-size:20px;color:rgb(0,0,0);margin-right:10px;" th:href="@{/contact}">Əlaqə</a></li>
+        <li><a style="color:rgb(0,0,0);font-size:20px;margin-right:10px;" href="#">Qaydalar</a></li>
+        <li></li>
+      </ul>
+      <p class="text-center" style="margin-top:30px;margin-bottom:15px;"><a style="font-size:35px;margin-right:30px;text-decoration: none" href="#"><i class="fa fa-facebook-square" style="color:rgb(0,0,0);margin-right:0px;"></i></a><a style="font-size:35px;margin-right:30px;text-decoration: none" href="#"><i class="fa fa-instagram" style="color:rgb(0,0,0);margin-right:0px;"></i></a><a style="font-size:35px;margin-right:30px;text-decoration: none" href="#"><i class="fa-brands fa-twitter" style="color:rgb(0,0,0);margin-right:0px;"></i></a><a style="font-size:35px;margin-right:30px;text-decoration: none" href="#"><i class="icon ion-social-snapchat" style="color:rgb(0,0,0);margin-right:0px;"></i></a></p>
+      <p class="text-center" style="color:rgb(193,184,184);font-family:ABeeZee, sans-serif;margin-bottom:23px;">Novruzlu Onur @ 2023</p>
+    </div>
+  </div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
