@@ -48,11 +48,14 @@ public class UserRegistrationSecurityConfig {
                 .authenticated().and()
                 .formLogin().loginPage("/login")
                 .defaultSuccessUrl("/")
+                .failureUrl("/myLogin")
                 .permitAll().and()
-                .logout().invalidateHttpSession(true)
-                .clearAuthentication(true)
+                .logout()
+                .logoutUrl("/myLogout")
+                .logoutSuccessUrl("/login")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
                 .permitAll().and().build();
     }
 }
