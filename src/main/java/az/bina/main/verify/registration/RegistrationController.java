@@ -20,35 +20,30 @@ public class RegistrationController {
     private final ApplicationEventPublisher publisher;
     private final VerificationTokenRepository tokenRepository;
 
-//    @PostMapping
-//    public String registerUser(@RequestBody RegistrationRequest registrationRequest, final HttpServletRequest request){
-//        User user=userService.registerUser(registrationRequest);
-//        publisher.publishEvent(new RegistrationCompleteEvent(user,applicationUrl(request)));
-//        return "Success!  Please, check your email to complete your registration";
-//    }
     @PostMapping
-    public String registerUser(@ModelAttribute RegistrationRequest newUser,
-                               final HttpServletRequest request){
+    public String registerUser(@ModelAttribute("newUser") RegistrationRequest newUser,
+                               final HttpServletRequest request,Model model){
         User user=userService.registerUser(newUser);
         publisher.publishEvent(new RegistrationCompleteEvent(user,applicationUrl(request)));
-        return "redirect:/login";
+        model.addAttribute("success",true);
+        return "registration";
     }
     @GetMapping
     public String showRegistrationForm(Model model){
-        model.addAttribute("user",new RegistrationRequest());
+        model.addAttribute("newUser",new RegistrationRequest());
         return "registration";
     }
     @GetMapping("/verifyEmail")
     public String verifyEmail(@RequestParam("token") String token){
         VerificationToken theToken = tokenRepository.findByToken(token);
         if(theToken.getUser().isEnabled()){
-            return "This account has already been verified, please, login.";
+            return "login";
         }
         String verificationResult = userService.validateToken(token);
         if(verificationResult.equalsIgnoreCase("valid")){
-            return "Email verified successfully. Now you can login to your account";
+            return "redirect:/verified";
         }
-        return "Invalid verification token";
+        return "redirect:/myLogin";
     }
 
     public String applicationUrl(HttpServletRequest request) {
