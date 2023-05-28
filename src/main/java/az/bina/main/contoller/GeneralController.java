@@ -60,8 +60,8 @@ public class GeneralController {
         return "contact";
     }
     @PostMapping("/sendEmail")
-    public String insertMail(@ModelAttribute MailsDto dto){
-        mailsService.insertMail(dto.getName(), dto.getEmail(), dto.getMessage());
+    public String insertMail(@ModelAttribute("newMail") MailsDto newMail){
+        mailsService.insertMail(newMail.getName(), newMail.getEmail(), newMail.getMessage());
         return "contact";
     }
 
